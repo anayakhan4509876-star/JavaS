@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My SuperHero Power Cards</title>
+    <style>
+        body {
+            background-color: rgb(73, 4, 4);
+            color: white;
+            font-size: 45px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="card1"></div>
+    <div id="card2"></div>
+    <div id="card3"></div>
+    <button onclick="openCard()">Open The Cards ✨<span id="open"></span></button>
+    <script>
+        class SuperHero {
+            constructor(name, power) {
+                this.name = name;
+                this.power = power;
+            }
+
+            describe() {
+                return this.name + ":" + this.power;
+            }
+        }
+        let Power1 = new SuperHero("Wonder Women", "Strength")
+        let Power2 = new SuperHero("SuperMan", "Fight")
+        let Power3 = new SuperHero("Batman", "Intellect")
+
+        function openCard() {
+            document.getElementById("card1").innerHTML = Power1.describe();
+            document.getElementById("card2").innerHTML = Power2.describe();
+            document.getElementById("card3").innerHTML = Power3.describe();
+        }
+    </script>
+</body>
+
+</html>

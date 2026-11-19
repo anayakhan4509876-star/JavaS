@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Daily Tasks ✨</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+            background-color: #ffeef6;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            color: #5a4a5e;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 25px;
+            width: 360px;
+            box-shadow: 0 8px 20px rgba(255, 140, 180, 0.2);
+            border: 3px solid #ffd1e6;
+            text-align: center;
+        }
+
+        h2 {
+            color: #ff6fa5;
+            margin-top: 0;
+        }
+
+        p {
+            background: #fff6fa;
+            padding: 12px;
+            border-radius: 15px;
+            border: 1.5px solid #ffe0ee;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #ff85b3;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 4px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #ff669e;
+        }
+
+        #sortNum,
+        #reverseNum {
+            background-color: #b599ff;
+        }
+
+        #sortNum:hover,
+        #reverseNum:hover {
+            background-color: #9d7aff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>🌸 My Daily Tasks 🌸</h2>
+
+        <p id="tasks">Study, Walk, Clean, Read</p>
+        <button id="sort" onclick="sortTasks()">Sort Tasks (A-Z)</button>
+        <button id="reverse" onclick="reverseTasks()">Reverse Tasks</button>
+
+        <hr style="border: 1px dashed #ffd1e6; margin: 18px 0;">
+
+        <p id="number">4, 1, 9, 2, 7, 5</p>
+        <button id="sortNum" onclick="sortNumbers()">Sort Numbers</button>
+        <button id="reverseNum" onclick="reverseNumbers()">Reverse Numbers</button>
+    </div>
+
+    <script>
+        tasks = ["Study", "Walk", "Clean", "Read"];
+
+        function sortTasks() {
+            tasks.sort();
+            document.getElementById("tasks").innerHTML = tasks;
+        }
+
+        function reverseTasks() {
+            tasks.reverse();
+            document.getElementById("tasks").innerHTML = tasks;
+        }
+
+        number = [4, 1, 9, 2, 7, 5];
+
+        function sortNumbers() {
+            number.sort(function (a, b) {
+                return a - b;
+            });
+            document.getElementById("number").innerHTML = number;
+        }
+
+        function reverseNumbers() {
+            number.reverse();
+            document.getElementById("number").innerHTML = number;
+        }
+    </script>
+
+</body>
+
+</html>

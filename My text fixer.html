@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Text Tester</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf6ff;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1674b8;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 12px;
+        }
+
+        input {
+            display: block;
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #2196d2;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #12669c;
+        }
+
+        .result {
+            color: #1674b8;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Text Fixer Tool.</h1>
+    <section>
+        <h1>Date checker:</h1>
+        <input id="typeInput" placeholder="Enter a value">
+        <button onclick="checkType()">Check Type</button>
+        <p id="typeOutput" class="result"></p>
+    </section>
+    <section>
+        <h1>Type Converter:</h1>
+        <input id="typeConverter" placeholder="Enter to Convert">
+        <button onclick="convertToNumber()">Convert to Number</button>
+        <button onclick="convertToString()">Convert to String</button>
+        <p id="convertOutput" class="result"></p>
+    </section>
+    <section>
+        <h1>Search and Replace:</h1>
+        <input id="sentence" placeholder="Write a Sentence">
+        <input id="searchWord" placeholder="Word to Search">
+        <input id="replaceWord" placeholder="Word to Replace">
+        <button onclick="replaceText()">Replace Text</button>
+        <p id="replaceOutput" class="result"></p>
+
+    </section>
+    <section>
+        <h1>Error Handling:</h1>
+        <button onclick="catchError()">Test Try and Catch</button>
+        <p id="errorOutput" class="result"></p>
+    </section>
+    <script>
+        function checkType() {
+            let value = document.getElementById("typeInput").value.trim();
+            if (value === "") {
+                document.getElementById("typeOutput").textContent = "Please enter something!!";
+                return;
+            }
+            let result;
+            if (value === "true" || value === "false") {
+                result = value == "true";
+            }
+
+            else if (!isNaN(value)) {
+                result = Number(value);
+            }
+            else {
+                result = value;
+            }
+            document.getElementById("typeOutput").textContent =
+                "Value:" + value + " | Type:" + typeof result;
+
+        }
+        function convertToNumber() {
+            let value = document.getElementById("typeConverter").value;
+            let number = Number(value);
+            document.getElementById("convertOutput").textContent =
+                "Converted value: " + value + " | Type: " + typeof number;
+
+        }
+        function convertToString() {
+            let value = document.getElementById("typeConverter").value;
+            let string = String(value);
+            document.getElementById("convertOutput").textContent =
+                "Converted value: " + value + " | Type: " + typeof string;
+
+        }
+        function replaceText() {
+            let sentence = document.getElementById("sentence").value;
+
+            let search = document.getElementById("searchWord").value;
+
+            let replacement = document.getElementById("replaceWord").value;
+
+            if (search === "") {
+                document.getElementById("replaceOutput").textContent =
+                    "Please enter a word to search";
+                return;
+            }
+            let result = sentence.split(search).join(replacement);
+            document.getElementById("replaceOutput").textContent =
+                "Result :" + result;
+        }
+        function catchError() {
+            try {
+                throw new Error("This is Test Error!!!");
+            }
+            catch (error) {
+                document.getElementById("errorOutput").textContent =
+                    "Caught error:" + error.message;
+            }
+
+        }
+
+    </script>
+</body>

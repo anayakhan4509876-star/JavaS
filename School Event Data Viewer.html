@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Event Data Viewer</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightpink;
+            text-align: center;
+            padding: 100px;
+            font-size: 25px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            max-width: 450px;
+            margin: auto;
+            border-radius: 12px;
+
+        }
+
+        h1 {
+            color: white;
+        }
+
+        button {
+            background: #c0392b;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkred;
+        }
+
+        #eventDetails {
+            background: #fcebea;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        #loading {
+            color: #e67e22;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>School Event Viewer</h1>
+
+    <p style="color:white">Click below to load school event data.</p>
+
+    <button onclick="showEvent()">Load Event</button>
+
+    <p id="loading"></p>
+
+    <div id="eventDetails" style="display:none;">
+
+        <h2 id="eventName"></h2>
+
+        <p id="eventDate"></p>
+        <p id="eventTime"></p>
+        <p id="eventLocation"></p>
+        <p id="eventCoordinater"></p>
+        <p id="eventDescription"></p>
+
+    </div>
+
+    <script>
+
+        const schoolEvent = {
+            name: "Annual Sports Day",
+            date: "15 December 2026",
+            time: "9:00 AM",
+            location: "School Ground",
+            Coordinater: "Ms.Anya",
+            description: "A fun day full of sports and activities!"
+        };
+
+
+        function loadSchoolEvent(callback) {
+
+            return new Promise((resolve) => {
+
+                callback("Loading event data...");
+
+                setTimeout(() => {
+                    resolve(schoolEvent);
+                }, 3000);
+
+            });
+
+        }
+
+
+        async function showEvent() {
+
+            const loading = document.getElementById("loading");
+
+            const eventData = await loadSchoolEvent(function (message) {
+                loading.textContent = message;
+            });
+
+
+            const jsonText = JSON.stringify(eventData);
+
+            const parsedData = JSON.parse(jsonText);
+
+
+            document.getElementById("eventName").textContent =
+                parsedData.name;
+
+            document.getElementById("eventDate").textContent =
+                "Date: " + parsedData.date;
+
+            document.getElementById("eventTime").textContent =
+                "Time: " + parsedData.time;
+
+            document.getElementById("eventLocation").textContent =
+                "Location: " + parsedData.location;
+
+            document.getElementById("eventLocation").textContent =
+                "Coordianater: " + parsedData.Coordinater;
+
+            document.getElementById("eventDescription").textContent =
+                parsedData.description;
+
+            document.getElementById("eventDetails").style.display = "block";
+
+
+            loading.textContent = "Event loaded successfully!";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
